@@ -64,7 +64,7 @@ lol-patch-bot/
    ```
    Add your Discord Webhook URL inside .env:
    ```
-   DISCORD_WEBHOOK_URL=[https://discord.com/api/webhooks/your_actual_url_here](https://discord.com/api/webhooks/your_actual_url_here)
+   DISCORD_WEBHOOK_URL=(https://discord.com/api/webhooks/your_actual_url_here)
    ```
 
 
