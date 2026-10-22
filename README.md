@@ -24,10 +24,11 @@ This project was developed for **learning purposes** as part of hands-on practic
 ## What I Learned
 
 - Consuming third-party REST APIs and parsing JSON responses using Python's `requests` library.
-- Managing persistent local state with file I/O operations (`with open(...)`).
+- Automating background tasks with **GitHub Actions** and POSIX cron scheduling.
+- Managing persistent state across serverless runner environments using automated Git commits (`contents: write`).
 - Handling external event-driven notifications through Discord Webhooks using HTTP POST requests.
-- Implementing security hygiene by managing credentials with `python-dotenv` and `.gitignore`.
-- Handling edge cases and initial application bootstrap flows with the `os` module.
+- Implementing cloud and local security hygiene using GitHub Repository Secrets, `python-dotenv`, and `.gitignore`.
+- Handling edge cases and initial application bootstrap flows with Python's `os` module.
 
 ---
 
