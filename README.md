@@ -13,10 +13,11 @@ This project was developed for **learning purposes** as part of hands-on practic
 ## ✨ Features
 
 - **Public API Ingestion:** Fetches real-time version releases from Riot Games' Data Dragon without requiring an API key.
-- **State Persistence:** Automatically initializes and manages a local state file (`last_patch.txt`) to compare version differences.
+- **Cloud Automation (Cron Scheduler):** Runs automatically every 2 hours via GitHub Actions workflows without requiring an active local machine.
+- **Automated Git Persistence:** Automatically tracks, commits, and pushes version updates (`last_patch.txt`) directly back to the GitHub repository.
 - **Event-Driven Alerts:** Posts instant notifications to a configured Discord channel via Webhook when a new patch is detected.
-- **Secure Configuration:** Protects sensitive Webhook URLs using environment variables via `python-dotenv`.
-- **Resilient Execution:** Safely creates the local state on first run without throwing `FileNotFoundError` or triggering false alarms.
+- **Secure Configuration:** Protects sensitive Webhook URLs locally via `.env` (`python-dotenv`) and in the cloud using GitHub Actions Secrets.
+- **Resilient Execution:** Safely initializes state on first run without throwing `FileNotFoundError` or triggering false alarms.
 
 ---
 
@@ -30,22 +31,40 @@ This project was developed for **learning purposes** as part of hands-on practic
 
 ---
 
-## 🛠️ Project Structure
+## 📂 Project Structure
 
 ```text
 lol-patch-bot/
 │
-├── patch_tracker.py    # Main monitoring and notification logic
-├── requirements.txt    # Project dependencies
-├── .env.example        # Environment variables template
-├── .gitignore          # Ignored local files (.env, last_patch.txt, cache)
-└── README.md           # Documentation
-```
+├── .github/
+│   └── workflows/
+│       └── tracker.yml   # Scheduled CI/CD workflow (runs every 2 hours)
+├── patch_tracker.py      # Main monitoring, file I/O, and alert logic
+├── requirements.txt      # Project dependencies
+├── last_patch.txt        # Tracked patch version state
+├── .env.example          # Environment variable template
+├── .gitignore            # Ignored local files (.env, __pycache__)
+└── README.md             # Project documentation
 
 ## Installation & Usage
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/](https://github.com/)<your-username>/<your-repo-name>.git
+   git clone https://github.com/<your-username>/<your-repo-name>.git
    cd <your-repo-name>
    ```
+2. Install dependencies:
+   ```bash
+      pip install -r requirements.txt
+   ```
+3. Configure environment variables:
+   Create a .env file from the example template:
+   ```bash
+   cp .env.example .env
+   ```
+   Add your Discord Webhook URL inside .env:
+   ```
+   DISCORD_WEBHOOK_URL=[https://discord.com/api/webhooks/your_actual_url_here](https://discord.com/api/webhooks/your_actual_url_here)
+   ```
+
+
